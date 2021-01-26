@@ -16,11 +16,10 @@ namespace Exercicio_Enumeracao_ComposicaoUML
             string email = Console.ReadLine();
             Console.Write("Birth Day(DD/MM/YYYY): ");
             DateTime birthDay = DateTime.Parse(Console.ReadLine());
-            DateTime moment = DateTime.Now;
-            Console.WriteLine("Moment: " + moment);
-
+            
             Client client = new Client(name, email, birthDay);
             Console.WriteLine("Enter order data:");
+            DateTime moment = DateTime.Now;
             Console.Write("Status: ");
             OrderStatus status = Enum.Parse<OrderStatus>(Console.ReadLine());
             Order order = new Order(moment, status, client);
@@ -29,9 +28,22 @@ namespace Exercicio_Enumeracao_ComposicaoUML
 
             for(int i = 1; i <= n; i++)
             {
-                Console.WriteLine($"Enter #{i}");
-            }
+                Console.WriteLine($"Enter #{i} item data:");
+                Console.Write("Product: ");
+                string productName = Console.ReadLine();
+                Console.Write("Product price: ");
+                double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                Product product = new Product(productName, price);
+                Console.Write("Quantity: ");
+                int quantity = int.Parse(Console.ReadLine());
+                OrderItem orderItem = new OrderItem(quantity, price, product);
 
+                order.AddItem(orderItem);
+            }
+            
+            Console.WriteLine();
+            Console.WriteLine("ORDER SUMMARY:");
+            Console.WriteLine(order);
         }
     }
 }

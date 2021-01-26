@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Exercicio_Enumeracao_ComposicaoUML.Entities;
+using System.Text;
+using System.Globalization;
 using Exercicio_Enumeracao_ComposicaoUML.Entities.Enums;
 
 namespace Exercicio_Enumeracao_ComposicaoUML.Entities
@@ -28,6 +29,28 @@ namespace Exercicio_Enumeracao_ComposicaoUML.Entities
         {
             Items.Remove(item);
         }
-        
+        public double Total()
+        {
+            double Total = 0;
+            foreach(OrderItem item in Items)
+            {
+                Total += item.SubTotal();
+            }
+            return Total;
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Order moment: " + Moment.ToString("dd/MM/yyyy HH:mm:ss"));
+            sb.AppendLine("Order status: " + Status);
+            sb.AppendLine("Client: " + Client.Name);
+            sb.AppendLine("Order items:");
+            foreach (OrderItem item in Items)
+            {
+                sb.AppendLine(item.Product.ToString());
+            }
+            sb.AppendLine("Total price: $" + Total().ToString("F2", CultureInfo.InvariantCulture));
+            return sb.ToString();
+        }
     }
 }

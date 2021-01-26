@@ -28,5 +28,6 @@ namespace Exercicio_Enumeracao_ComposicaoUML.Entities
         {
             Items.Remove(item);
         }
+        
     }
 }

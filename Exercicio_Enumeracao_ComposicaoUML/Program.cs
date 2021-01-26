@@ -19,10 +19,9 @@ namespace Exercicio_Enumeracao_ComposicaoUML
             
             Client client = new Client(name, email, birthDay);
             Console.WriteLine("Enter order data:");
-            DateTime moment = DateTime.Now;
             Console.Write("Status: ");
             OrderStatus status = Enum.Parse<OrderStatus>(Console.ReadLine());
-            Order order = new Order(moment, status, client);
+            Order order = new Order(DateTime.Now, status, client);
             Console.Write("How many items to this order? ");
             int n = int.Parse(Console.ReadLine());
 
